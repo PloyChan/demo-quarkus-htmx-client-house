@@ -1,0 +1,75 @@
+{#if client && crudMode == 'view'}
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">ข้อมูลสมาชิก</h5>
+        </div>
+        <form style="color: gray">
+            <div class="modal-body">
+            <div class="mt-1 mb-2">
+                <label for="firstName">ชื่อ</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" value="{client.firstName}" disabled>
+            </div>
+            <div class="mt-1 mb-2">
+                <label for="lastName">นามสกุล</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" value="{client.lastName}" disabled>
+            </div>
+            <div class="mt-1 mb-2">
+                <label for="tel" >โทร</label>
+                <input type="text" id="tel" name="tel" class="form-control" value="{client.tel}" disabled>
+            </div>
+            <div class="mt-1 mb-2">
+                <label for="email" >อีเมล</label>
+                <input type="text" id="email" name="email" class="form-control" value="{client.email}" disabled>
+            </div>
+            <div class="mt-1 mb-2">
+                <label for="lineId" >Line ID</label>
+                <input type="text" id="lineId" name="lineId" class="form-control" value="{client.lineId}" disabled>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/if}
+{#if client && crudMode == 'edit'}
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ข้อมูลสมาชิก</h5>
+            </div>
+            <form style="color: gray" hx-put="/client/update/{client.id}"  hx-target="#list" hx-swap="outerHTML">
+                <div class="modal-body">
+                    <div class="mt-1 mb-2">
+                        <label for="firstName">ชื่อ</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" value="{client.firstName}">
+                    </div>
+                    <div class="mt-1 mb-2">
+                        <label for="lastName">นามสกุล</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" value="{client.lastName}">
+                    </div>
+                    <div class="mt-1 mb-2">
+                        <label for="tel" >โทร</label>
+                        <input type="text" id="tel" name="tel" class="form-control" value="{client.tel}">
+                    </div>
+                    <div class="mt-1 mb-2">
+                        <label for="email" >อีเมล</label>
+                        <input type="text" id="email" name="email" class="form-control" value="{client.email}">
+                    </div>
+                    <div class="mt-1 mb-2">
+                        <label for="lineId" >Line ID</label>
+                        <input type="text" id="lineId" name="lineId" class="form-control" value="{client.lineId}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="btn btn-success"
+                            data-bs-dismiss="modal">บันทึก</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{/if}

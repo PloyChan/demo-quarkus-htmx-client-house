@@ -1,0 +1,155 @@
+/* styles.css */
+.color-primary {
+  color: #273c5d
+}
+
+.color-secondary {
+  color: #f96e3b;
+}
+
+.color-third {
+  color: #fbfeff;
+}
+
+.default-font {
+  font-family: "DejaVu Sans Mono", serif;
+}
+
+.default-font-color {
+  color: #273c5d !important;
+}
+
+.default-background {
+  background-color: #fdfdf9 !important;
+}
+
+.text-100px {
+  font-family: "DejaVu Sans Mono", serif;
+  font-size: 100px;
+  color: #273c5d
+}
+
+.font-for-town {
+  font-family: "Comfortaa", sans-serif;
+}
+
+.size-80px {
+  font-size: 80px;
+  color: #273c5d;
+  margin-bottom: 0;
+}
+
+.size-60px {
+  font-size: 60px;
+  color: #273c5d;
+  margin-bottom: 0;
+}
+
+.size-40px {
+  font-size: 40px;
+  color: #273c5d;
+  margin-bottom: 0;
+}
+.size-20px {
+  font-size: 30px;
+  color: #273c5d;
+  margin-top: 10px;
+}
+.size-10px {
+  font-size: 20px;
+  color: black;
+}
+.font-thai {
+  font-family: "Noto Sans Thai", serif !important;
+}
+.bg-font-20px {
+  background: #3097b1;
+  color: white !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.box {
+  background: #273c5d !important;
+  border: 1px solid #fbfeff !important;
+  padding: 80px;
+  margin: 100px;
+}
+
+.font-logo {
+  font-family: "Cantarell Extra Bold", serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f96e3b;
+}
+
+.bg-nav :hover {
+  background: #273c5d;
+  color: white !important;
+  border-radius: 40%;
+}
+
+.box-level2 {
+  background: #f96e3b !important;
+  border: 1px solid #fbfeff !important;
+  padding: 80px;
+  margin: 50px;
+}
+
+.icon {
+  color: #273c5d;
+  font-size: 60px;
+}
+
+.bg {
+  background-image: linear-gradient(#ed4643, #982226, #353431);
+}
+
+.text-80px {
+  font-family: "DejaVu Sans Mono", serif;
+  font-size: 80px;
+  color: #273c5d;
+  font-weight: bolder;
+}
+
+.item {
+  mix-blend-mode: multiply;
+}
+
+.scroll-text {
+  font-size: 24px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3097b1;
+  color: #fff !important;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+footer div {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+}
+
+.line {
+  border-top: 1px dashed #3097b1;
+}
+.table-color {
+  background-color: #3097b1 !important;
+}

@@ -1,0 +1,67 @@
+{#include main.html}
+
+<div class="container text-center font-thai">
+    <h1>ข้อมูลสมาชิก</h1>
+</div>
+{#fragment id="list"}
+<div id="list" class="container text-center default-font">
+
+    <table class="table table-color">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ชื่อ-นามสกุล</th>
+            <th scope="col">โทร</th>
+            <th scope="col">อีเมล</th>
+            <th scope="col">LineID</th>
+            <th scope="col">การจัดการ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#for c in clients}
+        <tr>
+            <td>{c.id}</td>
+            <td> {c.firstName } {c.lastName }</td>
+            <td>{c.tel}</td>
+            <td> {c.email}</td>
+            <td>{c.lineId}</td>
+            <td>
+                <a type="button"
+                   hx-get="/client/modal/{c.id}"
+                   hx-target="#modals-here"
+                   hx-trigger="click"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modals-here"
+                ><i class="bi bi-eye"></i></a>
+                <a type="button"
+                   hx-get="/client/modal/edit/{c.id}"
+                   hx-target="#modals-here"
+                   hx-trigger="click"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modals-here"
+                ><i class="bi bi-pencil"></i></a>
+                <a type="button"
+                   hx-delete="/client/{c.id}"
+                   hx-swap="outerHTML"
+                   hx-target="#list">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {/for}
+        </tbody>
+    </table>
+</div>
+   {/fragment}
+
+<div id="modals-here"
+     class="modal modal-blur fade"
+     style="display: none"
+     aria-hidden="false"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+    </div>
+
+</div>
+
