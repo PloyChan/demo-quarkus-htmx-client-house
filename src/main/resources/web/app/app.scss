@@ -155,12 +155,13 @@ footer div {
 }
 
 
-/* The alert message box */
+///* The alert message box */
 .alert {
-  padding: 20px;
-  background-color: #f44336 !important; /* Red */
+  padding: 20px !important;
+  background-color: #9ae585 !important;
   color: white !important;
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
+  margin-top: 15px !important;
 }
 
 /* The close button */

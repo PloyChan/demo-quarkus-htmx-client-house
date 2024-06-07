@@ -1,6 +1,7 @@
 package my.groupId.resource;
 
 import io.quarkiverse.renarde.htmx.HxController;
+import io.quarkus.panache.common.Sort;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import io.smallrye.common.annotation.Blocking;
@@ -31,6 +32,7 @@ public class ClientResource extends HxController {
         public static native TemplateInstance modal(Client client, String crudMode);
         public static native TemplateInstance client(List<Client> clients);
         public static native TemplateInstance client$list(List<Client> clients);
+        public static native TemplateInstance alert(String message);
     }
 
     @GET
@@ -40,7 +42,7 @@ public class ClientResource extends HxController {
         if(isHxRequest()) {
             return Templates.client$list(repo.listAll());
         }
-        return Templates.client(repo.listAll());
+        return Templates.client(repo.listAll(Sort.by("id")));
     }
 //    @POST
 //    @Path("client/save")
@@ -67,8 +69,9 @@ public class ClientResource extends HxController {
     @POST
     @Path("client/save")
     @Transactional
-    public void save(@BeanParam ClientDto clientDto) {
+    public TemplateInstance save(@BeanParam ClientDto clientDto) {
         repo.persist(mapper.toEntity(clientDto));
+        return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
     }
 
     @PUT
@@ -84,7 +87,7 @@ public class ClientResource extends HxController {
         clientExist.setTel(tel);
         repo.persist(clientExist);
 
-        return Templates.client$list(repo.listAll());
+        return Templates.client$list(repo.listAll(Sort.by("id")));
     }
 
     @GET

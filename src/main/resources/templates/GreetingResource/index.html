@@ -44,8 +44,8 @@
 </div>
 
 
-<div class="container font-thai">
-    <form style="color: gray">
+<div class="container font-thai" >
+    <form style="color: gray" hx-post="/client/save" hx-target="#alert-container" hx-swap="outerHTML">
         <div class="mt-1 mb-2">
             <label for="firstName">ชื่อ</label>
             <input type="text" id="firstName" name="firstName" class="form-control">
@@ -67,19 +67,13 @@
             <input type="text" id="lineId" name="lineId" class="form-control">
         </div>
         <div class="mt-4 text-center">
-            <button type="submit" class="btn btn-success"
-            hx-target="#modals-here"
-                   hx-trigger="click"
-                   data-bs-toggle="modal"
-                   data-bs-target="#modals-here"
-                   hx-get="/confirm/modal">ลงทะเบียน</button>
+             <button type="submit" class="btn btn-success">ลงทะเบียน</button>
         </div>
     </form>
 </div>
-{!<div class="alert">!}
-  {!<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>!}
-  {!This is an alert box.!}
-{!</div>!}
+<div class="container">
+  <div id="alert-container" class="mt-4"></div>
+</div>
 
 <div id="modals-here"
      class="modal modal-blur fade"
