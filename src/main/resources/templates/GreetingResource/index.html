@@ -1,8 +1,5 @@
 {#include main.html}
 
- {!<img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t31.18172-8/19441881_423122544710358_5725752708665755028_o.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEU-c3wcfs6haoF253yxcTUeIouX9kzgF14ii5f2TOAXcH1TseIn7Aeq37fhFuHS0GWB8wYNbkrLinE6mxgkvuT&_nc_ohc=KsLaO6MXyWUQ7kNvgGzEi5V&_nc_ht=scontent.fbkk5-5.fna&oh=00_AYBHrbISe19b7-2Gq-_Xrqb3Qk6s9Z2RMpxZfr2ksloyoQ&oe=667BBAB6"!}
-         {!class="item" alt="Background Image" width="100%" height="100%">!}
-
 <div class="text-center font-for-town">
    <p class="size-60px">The</p>
    <p class="size-80px">CENTRAL TOWN</p>
@@ -46,8 +43,9 @@
     </div>
 </div>
 
+
 <div class="container font-thai">
-    <form style="color: gray" hx-post="/client/save" >
+    <form style="color: gray">
         <div class="mt-1 mb-2">
             <label for="firstName">ชื่อ</label>
             <input type="text" id="firstName" name="firstName" class="form-control">
@@ -69,7 +67,28 @@
             <input type="text" id="lineId" name="lineId" class="form-control">
         </div>
         <div class="mt-4 text-center">
-            <button type="submit" class="btn btn-success">ลงทะเบียน</button>
+            <button type="submit" class="btn btn-success"
+            hx-target="#modals-here"
+                   hx-trigger="click"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modals-here"
+                   hx-get="/confirm/modal">ลงทะเบียน</button>
         </div>
     </form>
 </div>
+{!<div class="alert">!}
+  {!<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>!}
+  {!This is an alert box.!}
+{!</div>!}
+
+<div id="modals-here"
+     class="modal modal-blur fade"
+     style="display: none"
+     aria-hidden="false"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+    </div>
+
+</div>
+

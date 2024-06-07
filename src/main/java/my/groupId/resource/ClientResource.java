@@ -1,7 +1,6 @@
 package my.groupId.resource;
 
 import io.quarkiverse.renarde.htmx.HxController;
-import io.quarkus.panache.common.Sort;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import io.smallrye.common.annotation.Blocking;
@@ -12,6 +11,8 @@ import jakarta.json.JsonObject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import my.groupId.dto.ClientDto;
+import my.groupId.mapstruct.ClientMapper;
 import my.groupId.model.Client;
 import my.groupId.repo.ClientRepo;
 import org.jboss.resteasy.reactive.RestForm;
@@ -23,6 +24,8 @@ import java.util.List;
 public class ClientResource extends HxController {
     @Inject
     ClientRepo repo;
+    @Inject
+    ClientMapper mapper;
     @CheckedTemplate
     public static class Templates {
         public static native TemplateInstance modal(Client client, String crudMode);
@@ -39,26 +42,33 @@ public class ClientResource extends HxController {
         }
         return Templates.client(repo.listAll());
     }
+//    @POST
+//    @Path("client/save")
+//    @Transactional
+//    public Response save(@RestForm("firstName") String firstName, @RestForm("lastName") String lastName,
+//                         @RestForm("tel") String tel, @RestForm("email") String email, @RestForm("lineId") String lineId) {
+//        Client client = new Client();
+//        client.setFirstName(firstName);
+//        client.setLastName(lastName);
+//        client.setEmail(email);
+//        client.setLineId(lineId);
+//        client.setTel(tel);
+//        repo.persist(client);
+//
+//        JsonObject responseJson = Json.createObjectBuilder()
+//                .add("redirect", "/client")
+//                .build();
+//
+//        return Response.ok(responseJson.toString())
+//                .header("HX-Redirect", "/client")
+//                .build();
+//    }
+
     @POST
     @Path("client/save")
     @Transactional
-    public Response save(@RestForm("firstName") String firstName, @RestForm("lastName") String lastName,
-                         @RestForm("tel") String tel, @RestForm("email") String email, @RestForm("lineId") String lineId) {
-        Client client = new Client();
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setEmail(email);
-        client.setLineId(lineId);
-        client.setTel(tel);
-        repo.persist(client);
-
-        JsonObject responseJson = Json.createObjectBuilder()
-                .add("redirect", "/client")
-                .build();
-
-        return Response.ok(responseJson.toString())
-                .header("HX-Redirect", "/client")
-                .build();
+    public void save(@BeanParam ClientDto clientDto) {
+        repo.persist(mapper.toEntity(clientDto));
     }
 
     @PUT
@@ -74,7 +84,7 @@ public class ClientResource extends HxController {
         clientExist.setTel(tel);
         repo.persist(clientExist);
 
-        return Templates.client$list(repo.listAll(Sort.by("id")));
+        return Templates.client$list(repo.listAll());
     }
 
     @GET

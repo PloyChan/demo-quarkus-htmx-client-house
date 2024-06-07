@@ -1,21 +1,28 @@
-package my.groupId.model;
+package my.groupId.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import my.groupId.model.Client;
+import org.jboss.resteasy.reactive.RestForm;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "client")
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Client_seq")
-    @SequenceGenerator(name = "Client_seq", sequenceName = "client_seq", allocationSize = 1)
+/**
+ * DTO for {@link Client}
+ */
+public class ClientDto implements Serializable {
     private Long id;
+    @RestForm
     private String firstName;
+
+    @RestForm
     private String lastName;
+
+    @RestForm
     private String tel;
+
+    @RestForm
     private String email;
+    @RestForm
     private String lineId;
 
     public Long getId() {
@@ -64,18 +71,5 @@ public class Client {
 
     public void setLineId(String lineId) {
         this.lineId = lineId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(id, client.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }
