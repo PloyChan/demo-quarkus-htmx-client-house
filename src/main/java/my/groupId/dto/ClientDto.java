@@ -11,7 +11,9 @@ import java.io.Serializable;
  */
 public class ClientDto implements Serializable {
     private Long id;
+
     @RestForm
+    @NotBlank(message = "is required")
     private String firstName;
 
     @RestForm

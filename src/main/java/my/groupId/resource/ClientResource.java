@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import my.groupId.dto.ClientDto;
@@ -17,6 +18,8 @@ import my.groupId.mapstruct.ClientMapper;
 import my.groupId.model.Client;
 import my.groupId.repo.ClientRepo;
 import org.jboss.resteasy.reactive.RestForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class ClientResource extends HxController {
     ClientRepo repo;
     @Inject
     ClientMapper mapper;
+
+    private static final Logger log = LoggerFactory.getLogger(ClientResource.class);
+
     @CheckedTemplate
     public static class Templates {
         public static native TemplateInstance modal(Client client, String crudMode);
@@ -68,9 +74,13 @@ public class ClientResource extends HxController {
 
     @POST
     @Path("client/save")
-    @Transactional
-    public TemplateInstance save(@BeanParam ClientDto clientDto) {
-        repo.persist(mapper.toEntity(clientDto));
+    public TemplateInstance save(@Valid @BeanParam ClientDto clientDto) {
+//        if(validationFailed()){
+//            return Templates.alert("บันทึกข้อมูลไม่สำเร็จ");
+//        } else {
+//            repo.persist(mapper.toEntity(clientDto));
+//            return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
+//        }
         return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
     }
 
@@ -112,4 +122,5 @@ public class ClientResource extends HxController {
         repo.deleteById(id);
         return Templates.client$list(repo.listAll());
     }
+
 }

@@ -12,13 +12,13 @@ import jakarta.ws.rs.Path;
 public class GreetingResource extends HxController {
     @CheckedTemplate
     public static class Templates {
-        public static native TemplateInstance index();
+        public static native TemplateInstance index(String firstName);
     }
 
     @GET
     @Path("/")
     public TemplateInstance index() {
-        return Templates.index();
+        return Templates.index(null);
     }
 
 }
