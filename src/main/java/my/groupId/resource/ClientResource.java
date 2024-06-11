@@ -75,13 +75,14 @@ public class ClientResource extends HxController {
     @POST
     @Path("client/save")
     public TemplateInstance save(@Valid @BeanParam ClientDto clientDto) {
-//        if(validationFailed()){
-//            return Templates.alert("บันทึกข้อมูลไม่สำเร็จ");
-//        } else {
-//            repo.persist(mapper.toEntity(clientDto));
-//            return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
-//        }
-        return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
+        if(validationFailed()){
+            validation.addError("firstName", "is required");
+            return Templates.alert("บันทึกข้อมูลไม่สำเร็จ");
+        } else {
+            repo.persist(mapper.toEntity(clientDto));
+            return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
+        }
+//        return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
     }
 
     @PUT

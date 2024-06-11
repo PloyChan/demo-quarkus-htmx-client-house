@@ -47,38 +47,34 @@
 </div>
 
 
-<div class="container font-thai">
-    <form style="color: gray" hx-post="/client/save" hx-target="#alert-container" hx-swap="outerHTML">
-    <div class="mt-1 mb-2">
-    <label for="firstName" class="">ชื่อ</label>
+{!<div class="container font-thai">!}
+    {!<form style="color: gray" hx-post="/client/save" hx-target="#alert-container" hx-swap="outerHTML">!}
+    {!<div class="mt-1 mb-2">!}
+    {!<label for="firstName" class="">ชื่อ</label>!}
     {!<input type="text" id="firstName" name="firstName"!}
            {!class="form-control">!}
-        <input name="firstName"
-               type="text"
-               class="form-control {#ifError firstName}is-invalid{/ifError}"
-               value="{inject:flash.get(firstName)}">
-    </div>
-    <div class="mt-1 mb-2">
-    <label for="lastName">นามสกุล</label>
-    <input type="text" id="lastName" name="lastName" class="form-control">
-    </div>
-    <div class="mt-1 mb-2">
-    <label for="tel" >โทร</label>
-    <input type="text" id="tel" name="tel" class="form-control">
-    </div>
-    <div class="mt-1 mb-2">
-    <label for="email" >อีเมล</label>
-    <input type="text" id="email" name="email" class="form-control">
-    </div>
-    <div class="mt-1 mb-2">
-    <label for="lineId" >Line ID</label>
-    <input type="text" id="lineId" name="lineId" class="form-control">
-    </div>
-    <div class="mt-4 text-center">
-    <button type="submit" class="btn btn-success">ลงทะเบียน</button>
-    </div>
-    </form>
-</div>
+    {!</div>!}
+    {!<div class="mt-1 mb-2">!}
+    {!<label for="lastName">นามสกุล</label>!}
+    {!<input type="text" id="lastName" name="lastName" class="form-control">!}
+    {!</div>!}
+    {!<div class="mt-1 mb-2">!}
+    {!<label for="tel" >โทร</label>!}
+    {!<input type="text" id="tel" name="tel" class="form-control">!}
+    {!</div>!}
+    {!<div class="mt-1 mb-2">!}
+    {!<label for="email" >อีเมล</label>!}
+    {!<input type="text" id="email" name="email" class="form-control">!}
+    {!</div>!}
+    {!<div class="mt-1 mb-2">!}
+    {!<label for="lineId" >Line ID</label>!}
+    {!<input type="text" id="lineId" name="lineId" class="form-control">!}
+    {!</div>!}
+    {!<div class="mt-4 text-center">!}
+    {!<button type="submit" class="btn btn-success">ลงทะเบียน</button>!}
+    {!</div>!}
+    {!</form>!}
+{!</div>!}
 
 {!{#form uri:ClientResource.save()}!}
 {!!}
@@ -92,6 +88,39 @@
     {!<button type="submit" class="btn btn-primary">Complete registration</button>!}
 {!!}
 {!{/form}!}
+
+<div class="container font-thai">
+{#fragment id = "form"}
+    <form style="color: gray" hx-post="/save">
+        <div class="mt-1 mb-2">
+            <label for="firstName" class="ui-require">ชื่อ</label>
+            <input name="firstName" type="text" class="form-control {#ifError 'firstName'}is-invalid{/ifError}" value="{inject:flash.get('firstName')}">
+            <div class="invalid-feedback">{#error 'firstName'/}</div>
+        </div>
+        <div class="mt-1 mb-2">
+            <label for="lastName">นามสกุล</label>
+            <input type="text" id="lastName" name="lastName" class="form-control"  value="{client.lastName ?: null}">
+        </div>
+        <div class="mt-1 mb-2">
+            <label for="tel">โทร</label>
+            <input type="text" id="tel" name="tel" class="form-control" value="{client.tel ?: null}">
+        </div>
+        <div class="mt-1 mb-2">
+            <label for="email">อีเมล</label>
+            <input type="text" id="email" name="email" class="form-control"  value="{client.email ?: null}">
+        </div>
+        <div class="mt-1 mb-2">
+            <label for="lineId">Line ID</label>
+            <input type="text" id="lineId" name="lineId" class="form-control" value="{client.lineId ?: null}">
+        </div>
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-success">ลงทะเบียน</button>
+        </div>
+    </form>
+    {/fragment}
+</div>
+
+
 <div class="container">
     <div id="alert-container" class="mt-4"></div>
 </div>
