@@ -180,3 +180,9 @@ footer div {
 .closebtn:hover {
   color: black;
 }
+
+.ui-require:after {
+  content: "*";
+  color: #DC3545FF;
+  display: contents;
+}
