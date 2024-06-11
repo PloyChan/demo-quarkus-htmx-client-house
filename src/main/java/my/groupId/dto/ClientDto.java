@@ -15,9 +15,9 @@ public class ClientDto implements Serializable {
     private Long id;
 
     @RestForm
-    @NotBlank(message = "is required")
+    @NotBlank(message = "firstname is required")
     @Size(max = 2, message = "ห้ามเกิน 2")
-    @Digits(integer = 2, fraction = 0)
+//    @Digits(integer = 2, fraction = 0 )
     private String firstName;
 
     @RestForm

@@ -7,13 +7,8 @@ import io.quarkus.qute.TemplateInstance;
 import io.smallrye.common.annotation.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Response;
-import my.groupId.dto.ClientDto;
 import my.groupId.mapstruct.ClientMapper;
 import my.groupId.model.Client;
 import my.groupId.repo.ClientRepo;
@@ -72,18 +67,6 @@ public class ClientResource extends HxController {
 //                .build();
 //    }
 
-    @POST
-    @Path("client/save")
-    public TemplateInstance save(@Valid @BeanParam ClientDto clientDto) {
-        if(validationFailed()){
-            validation.addError("firstName", "is required");
-            return Templates.alert("บันทึกข้อมูลไม่สำเร็จ");
-        } else {
-            repo.persist(mapper.toEntity(clientDto));
-            return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
-        }
-//        return Templates.alert("บันทึกข้อมูลเสร็จสิ้น");
-    }
 
     @PUT
     @Path("client/update/{id}")
