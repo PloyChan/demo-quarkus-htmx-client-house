@@ -1,12 +1,9 @@
 package my.groupId.resource;
 
 import io.quarkiverse.renarde.htmx.HxController;
-import io.quarkiverse.renarde.util.Validation;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.GET;
@@ -15,8 +12,6 @@ import jakarta.ws.rs.Path;
 import my.groupId.dto.ClientDto;
 import my.groupId.mapstruct.ClientMapper;
 import my.groupId.repo.ClientRepo;
-
-import java.util.Set;
 
 @Path("/")
 public class GreetingResource extends HxController {
@@ -40,7 +35,7 @@ public class GreetingResource extends HxController {
     @POST
     @Path("/save")
     public TemplateInstance save(@Valid @BeanParam ClientDto clientDto) {
-        if (validationFailed()) {
+        if (validation.hasErrors()) {
             return Templates.index$form(clientDto);
         } else {
             repo.persist(mapper.toEntity(clientDto));

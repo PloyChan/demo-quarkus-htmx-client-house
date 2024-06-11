@@ -1,6 +1,8 @@
 package my.groupId.dto;
 
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import my.groupId.model.Client;
 import org.jboss.resteasy.reactive.RestForm;
 
@@ -14,6 +16,8 @@ public class ClientDto implements Serializable {
 
     @RestForm
     @NotBlank(message = "is required")
+    @Size(max = 2, message = "ห้ามเกิน 2")
+    @Digits(integer = 2, fraction = 0)
     private String firstName;
 
     @RestForm
